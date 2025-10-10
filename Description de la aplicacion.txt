@@ -1,0 +1,17 @@
+Description de la aplicacion:
+
+- Esta es una aplicacion de tiro parabolico
+- El stack estara basado en python
+- La altura inicial sera 0
+- La aceleracion de la gravedad sera 9.81 m/s^2
+- La trayectoria sera simulada en un plano cartesiano hasta que el proyectil impacte con el suelo
+Inputs:
+- Angulo de tiro
+- Velocidad inicial
+
+Outputs:
+- Distancia horizontal
+- Altura maxima
+- Tiempo de vuelo
+- Velocidad final
+- Grafica de la trayectoria
