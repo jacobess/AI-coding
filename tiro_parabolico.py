@@ -8,6 +8,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import Tuple, List
+from calculos_trayectoria import calcular_trayectoria
 
 class TiroParabolico:
     """Clase para simular el tiro parabólico de un proyectil"""
@@ -25,6 +26,7 @@ class TiroParabolico:
     def calcular_trayectoria(self, angulo: float, velocidad_inicial: float) -> dict:
         """
         Calcula todos los parámetros del tiro parabólico
+        Delega el cálculo al módulo de cálculos de trayectoria
         
         Args:
             angulo: Ángulo de tiro en grados
@@ -33,43 +35,7 @@ class TiroParabolico:
         Returns:
             Diccionario con todos los resultados calculados
         """
-        # Convertir ángulo a radianes
-        angulo_rad = math.radians(angulo)
-        
-        # Componentes de la velocidad inicial
-        vx0 = velocidad_inicial * math.cos(angulo_rad)
-        vy0 = velocidad_inicial * math.sin(angulo_rad)
-        
-        # Tiempo de vuelo (cuando y = 0)
-        # y = y0 + vy0*t - 0.5*g*t² = 0
-        # Resolviendo la ecuación cuadrática: t = (vy0 + sqrt(vy0² + 2*g*y0)) / g
-        # Como y0 = 0: t = 2*vy0/g
-        tiempo_vuelo = (2 * vy0) / self.g
-        
-        # Distancia horizontal máxima
-        distancia_horizontal = vx0 * tiempo_vuelo
-        
-        # Altura máxima (cuando vy = 0)
-        # vy = vy0 - g*t = 0 => t = vy0/g
-        tiempo_altura_max = vy0 / self.g
-        altura_maxima = self.altura_inicial + vy0 * tiempo_altura_max - 0.5 * self.g * tiempo_altura_max**2
-        
-        # Velocidad final (justo antes del impacto)
-        # vx final = vx0 (constante)
-        # vy final = vy0 - g*t_vuelo = vy0 - g*(2*vy0/g) = -vy0
-        vx_final = vx0
-        vy_final = -vy0
-        velocidad_final = math.sqrt(vx_final**2 + vy_final**2)
-        
-        return {
-            'angulo': angulo,
-            'velocidad_inicial': velocidad_inicial,
-            'tiempo_vuelo': tiempo_vuelo,
-            'distancia_horizontal': distancia_horizontal,
-            'altura_maxima': altura_maxima,
-            'velocidad_final': velocidad_final,
-            'componentes_finales': (vx_final, vy_final)
-        }
+        return calcular_trayectoria(angulo, velocidad_inicial, self.g, self.altura_inicial)
     
     def generar_puntos_trayectoria(self, angulo: float, velocidad_inicial: float, 
                                  num_puntos: int = 100) -> Tuple[List[float], List[float]]:
