@@ -64,8 +64,8 @@ class TestTiroParabolico(unittest.TestCase):
         """Prueba tiro vertical (90°)"""
         resultados = self.simulador.calcular_trayectoria(90, 10)
         
-        # Con ángulo 90°, no hay componente horizontal
-        self.assertEqual(resultados['distancia_horizontal'], 0)
+        # Con ángulo 90°, no hay componente horizontal (usar tolerancia para errores de punto flotante)
+        self.assertAlmostEqual(resultados['distancia_horizontal'], 0, places=10)
         
         # Tiempo de vuelo = 2*vy0/g = 2*10/9.81 ≈ 2.04s
         tiempo_esperado = 2 * 10 / 9.81
