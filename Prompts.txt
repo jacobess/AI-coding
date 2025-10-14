@@ -1,0 +1,2 @@
+"Crea una rutina nueva llamada calcular_trayectoria_simplificado equivalente a la implementacion de calcular_trayectoria pero sin solicitar el parametro de gravedad.  Crea esta rutina en el archivo calculos_trayectoria_simplificado.py"
+
